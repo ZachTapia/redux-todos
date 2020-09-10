@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
-import * as actionTypes from "../../redux/actions/actionTypes";
+import * as actionTypes from "../redux/actions/actionTypes";
 
 const light = "#E7EAEC";
 

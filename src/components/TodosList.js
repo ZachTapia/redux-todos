@@ -2,16 +2,22 @@ import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
-import * as actionTypes from "../../redux/actions/actionTypes";
-import TodoItem from "../TodoItem/TodoItem";
+import * as actionTypes from "../redux/actions/actionTypes";
+import TodoItem from "./TodoItem";
 
+const dark = "#151319";
+const darkAccent = "#657683";
+const mainColor = "#595D64";
+const light = "#E7EAEC";
 const lightAccent = "#507C83";
 
 const Wrapper = styled.div`
   width: 100%;
 `;
 const Title = styled.h1`
-  color: ${lightAccent};
+  margin: 2vh 0 0 1vw;
+  color: ${light};
+  font-size: 2vw;
 `;
 
 const ListContainer = styled.div`
