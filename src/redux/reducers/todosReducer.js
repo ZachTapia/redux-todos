@@ -3,8 +3,7 @@ import * as actionTypes from "../actions/actionTypes";
 const initialState = {
   todos: [
     { id: 1, title: "Wash car", completed: true },
-    { id: 2, title: "Do HW", completed: false },
-    { id: 3, title: "Walk dog", completed: false }
+    { id: 2, title: "Do HW", completed: false }
   ]
 };
 
