@@ -1,6 +1,7 @@
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
-import TodosList from "./components/TodosList/TodosList";
+import TodosList from "./components/TodosList";
+import AddTodo from "./components/AddTodo";
 
 const dark = "#151319";
 const darkAccent = "#657683";
@@ -18,11 +19,19 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const AppContainer = styled.div`
-  display: flex;
+const AppContainer = styled.section`
   width: 100vw;
   height: 100vh;
+  background-color: ${light};
+`;
+
+const FlexContainer = styled.section`
+  display: flex;
+  position: absolute;
+  width: 100vw;
+  height: 80vh;
   background-color: ${dark};
+  bottom: 0;
 `;
 
 const App = () => {
@@ -30,7 +39,10 @@ const App = () => {
     <>
       <GlobalStyle />
       <AppContainer>
-        <TodosList />
+        <AddTodo />
+        <FlexContainer>
+          <TodosList />
+        </FlexContainer>
       </AppContainer>
     </>
   );

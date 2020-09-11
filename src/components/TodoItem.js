@@ -2,17 +2,19 @@ import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
-import * as actionTypes from "../../redux/actions/actionTypes";
+import * as actionTypes from "../redux/actions/actionTypes";
 
 const light = "#E7EAEC";
 
 const ItemContainer = styled.div`
+  display: flex;
+  align-items: center;
   width: 50%;
-  height: 15vh;
+  height: 10vh;
   background-color: ${light};
   border-radius: 7px;
   margin: 3vh 0;
-  padding: 2.5%;
+  padding: 5%;
 `;
 
 const Label = styled.label`
