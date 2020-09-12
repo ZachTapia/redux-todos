@@ -4,17 +4,19 @@ import { connect } from "react-redux";
 
 import * as actionTypes from "../redux/actions/actionTypes";
 
+const dark = "#151319";
 const light = "#E7EAEC";
+const mainColor = "#595D64";
 
 const ItemContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-around;
   width: 50%;
   height: 10vh;
   background-color: ${light};
   border-radius: 7px;
   margin: 3vh 0;
-  padding: 5%;
 `;
 
 const Label = styled.label`
@@ -28,13 +30,24 @@ const Checkbox = styled.input.attrs({ type: "checkbox" })`
   width: 1vw;
 `;
 
-const TodoItem = ({ title, completed, id, onToggleTodo }) => {
+const Button = styled.button`
+  width: 5vw;
+  height: 4vh;
+  border-radius: 5px;
+  font-size: 1vw;
+  padding: 1%;
+  background-color: ${mainColor};
+  color: ${light};
+`;
+
+const TodoItem = ({ title, completed, id, onToggleTodo, onDeleteTodo }) => {
   return (
     <ItemContainer>
       <Label completed={completed}>
         <Checkbox checked={completed} onClick={() => onToggleTodo(id)} />
         {title}
       </Label>
+      <Button onClick={() => onDeleteTodo(id)}>DELETE</Button>
     </ItemContainer>
   );
 };
@@ -42,7 +55,9 @@ const TodoItem = ({ title, completed, id, onToggleTodo }) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onToggleTodo: (id) =>
-      dispatch({ type: actionTypes.toggleTodoComplete, payload: { id: id } })
+      dispatch({ type: actionTypes.toggleTodoComplete, payload: { id: id } }),
+    onDeleteTodo: (id) =>
+      dispatch({ type: actionTypes.deleteTodo, payload: { id: id } })
   };
 };
 
