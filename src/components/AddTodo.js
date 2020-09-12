@@ -26,6 +26,7 @@ const Button = styled.button`
   color: ${light};
   font-size: 1vw;
   padding: 0.5vw;
+  border-radius: 5px;
   background-color: ${lightAccent};
 `;
 

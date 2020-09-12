@@ -15,11 +15,25 @@ const todosReducer = (state = initialState, action) => {
         todos: [
           ...state.todos,
           {
-            id: state.todos[state.todos.length - 1].id + 1,
+            id:
+              state.todos.length > 0
+                ? state.todos[state.todos.length - 1].id + 1
+                : 1,
             title: action.payload.title,
             completed: false
           }
         ]
+      };
+    }
+
+    case actionTypes.deleteTodo: {
+      const newTodosArray = state.todos.filter(
+        (todo) => todo.id !== action.payload.id
+      );
+
+      return {
+        ...state,
+        todos: newTodosArray
       };
     }
 
