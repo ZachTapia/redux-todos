@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 
 import * as actionTypes from "../redux/actions/actionTypes";
 
-const dark = "#151319";
 const light = "#E7EAEC";
 const mainColor = "#595D64";
 
@@ -12,7 +11,7 @@ const ItemContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 50%;
+  width: 25vw;
   height: 10vh;
   background-color: ${light};
   border-radius: 7px;
@@ -40,24 +39,49 @@ const Button = styled.button`
   color: ${light};
 `;
 
-const TodoItem = ({ title, completed, id, onToggleTodo, onDeleteTodo }) => {
+const TodoItem = ({
+  title,
+  completed,
+  id,
+  onToggleTodo,
+  onDeleteTodo,
+  onFocusTodo
+}) => {
   return (
-    <ItemContainer>
-      <Label completed={completed}>
-        <Checkbox checked={completed} onClick={() => onToggleTodo(id)} />
+    <ItemContainer
+      onClick={() =>
+        onFocusTodo({ id: id, title: title, completed: completed })
+      }
+    >
+      <Label completed={completed} onClick={(e) => onToggleTodo(e, id)}>
+        <Checkbox checked={completed} onClick={(e) => e.stopPropagation()} />
         {title}
       </Label>
-      <Button onClick={() => onDeleteTodo(id)}>DELETE</Button>
+      <Button onClick={(e) => onDeleteTodo(e, id)}>DELETE</Button>
     </ItemContainer>
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, getState) => {
   return {
-    onToggleTodo: (id) =>
-      dispatch({ type: actionTypes.toggleTodoComplete, payload: { id: id } }),
-    onDeleteTodo: (id) =>
-      dispatch({ type: actionTypes.deleteTodo, payload: { id: id } })
+    onToggleTodo: (e, id) => {
+      e.stopPropagation();
+      dispatch({ type: actionTypes.toggleTodoComplete, payload: { id: id } });
+    },
+
+    onDeleteTodo: (e, id) => {
+      e.stopPropagation();
+      dispatch({
+        type: actionTypes.deleteTodo,
+        payload: { id: id }
+      });
+    },
+
+    onFocusTodo: (focusedTodo) =>
+      dispatch({
+        type: actionTypes.focusTodo,
+        payload: { focusedTodo: focusedTodo }
+      })
   };
 };
 

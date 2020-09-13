@@ -1,8 +1,10 @@
 import { createStore, combineReducers } from "redux";
 import todosReducer from "./reducers/todosReducer";
+import focusedTodoReducer from "./reducers/focusedTodoReducer";
 
 const rootReducer = combineReducers({
-  todos: todosReducer
+  todos: todosReducer,
+  focusedTodo: focusedTodoReducer
 });
 
 // Takes combined reducers
