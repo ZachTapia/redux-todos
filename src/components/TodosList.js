@@ -5,15 +5,10 @@ import styled from "styled-components";
 import * as actionTypes from "../redux/actions/actionTypes";
 import TodoItem from "./TodoItem";
 
-const dark = "#151319";
-const darkAccent = "#657683";
-const mainColor = "#595D64";
 const light = "#E7EAEC";
-const lightAccent = "#507C83";
 
-const Wrapper = styled.div`
-  width: 100%;
-`;
+const Wrapper = styled.div``;
+
 const Title = styled.h1`
   margin: 2vh 0 0 1vw;
   color: ${light};

@@ -2,6 +2,7 @@ import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import TodosList from "./components/TodosList";
 import AddTodo from "./components/AddTodo";
+import FocusedTodo from "./components/FocusedTodo";
 
 const dark = "#151319";
 const darkAccent = "#657683";
@@ -27,11 +28,12 @@ const AppContainer = styled.section`
 
 const FlexContainer = styled.section`
   display: flex;
+  justify-content: space-around;
   position: absolute;
+  bottom: 0;
   width: 100vw;
   height: 80vh;
   background-color: ${dark};
-  bottom: 0;
 `;
 
 const App = () => {
@@ -42,6 +44,7 @@ const App = () => {
         <AddTodo />
         <FlexContainer>
           <TodosList />
+          <FocusedTodo />
         </FlexContainer>
       </AppContainer>
     </>
