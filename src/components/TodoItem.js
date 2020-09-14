@@ -53,8 +53,8 @@ const TodoItem = ({
         onFocusTodo({ id: id, title: title, completed: completed })
       }
     >
-      <Label completed={completed} onClick={(e) => onToggleTodo(e, id)}>
-        <Checkbox checked={completed} onClick={(e) => e.stopPropagation()} />
+      <Label completed={completed}>
+        <Checkbox checked={completed} onClick={(e) => onToggleTodo(e, id)} />
         {title}
       </Label>
       <Button onClick={(e) => onDeleteTodo(e, id)}>DELETE</Button>
