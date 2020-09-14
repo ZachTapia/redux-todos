@@ -5,10 +5,10 @@ import AddTodo from "./components/AddTodo";
 import FocusedTodo from "./components/FocusedTodo";
 
 const dark = "#151319";
-const darkAccent = "#657683";
-const mainColor = "#595D64";
+// const darkAccent = "#657683";
+// const mainColor = "#595D64";
 const light = "#E7EAEC";
-const lightAccent = "#507C83";
+// const lightAccent = "#507C83";
 
 const GlobalStyle = createGlobalStyle`
   * {

@@ -1,10 +1,12 @@
 import { createStore, combineReducers } from "redux";
 import todosReducer from "./reducers/todosReducer";
 import focusedTodoReducer from "./reducers/focusedTodoReducer";
+import visibilityReducer from "./reducers/visibilityReducer";
 
 const rootReducer = combineReducers({
   todos: todosReducer,
-  focusedTodo: focusedTodoReducer
+  focusedTodo: focusedTodoReducer,
+  visibility: visibilityReducer
 });
 
 // Takes combined reducers
