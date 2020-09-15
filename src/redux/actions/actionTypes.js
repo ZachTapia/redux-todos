@@ -1,5 +1,5 @@
-export const addTodo = "ADD_TODO";
-export const toggleTodoComplete = "TOGGLE_TODO_COMPLETE";
-export const deleteTodo = "DELETE_TODO";
-export const focusTodo = "FOCUS_TODO";
-export const changeVisibility = "CHANGE_VISIBILITY";
+export const ADD_TODO = "ADD_TODO";
+export const TOGGLE_TODO_COMPLETE = "TOGGLE_TODO_COMPLETE";
+export const DELETE_TODO = "DELETE_TODO";
+export const FOCUS_TODO = "FOCUS_TODO";
+export const CHANGE_VISIBILITY = "CHANGE_VISIBILITY";

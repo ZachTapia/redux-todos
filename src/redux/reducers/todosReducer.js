@@ -9,7 +9,7 @@ const initialState = {
 
 const todosReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.addTodo: {
+    case actionTypes.ADD_TODO: {
       return {
         ...state,
         todos: [
@@ -26,7 +26,7 @@ const todosReducer = (state = initialState, action) => {
       };
     }
 
-    case actionTypes.deleteTodo: {
+    case actionTypes.DELETE_TODO: {
       const newTodosArray = state.todos.filter(
         (todo) => todo.id !== action.payload.id
       );
@@ -37,7 +37,7 @@ const todosReducer = (state = initialState, action) => {
       };
     }
 
-    case actionTypes.toggleTodoComplete: {
+    case actionTypes.TOGGLE_TODO_COMPLETE: {
       const newTodosArray = state.todos.map((item) => {
         if (item.id === action.payload.id) {
           return {

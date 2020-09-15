@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
-import * as actionTypes from "../redux/actions/actionTypes";
+import { deleteTodo } from "../redux/actions";
 
 const darkAccent = "#657683";
 const mainColor = "#595D64";
@@ -39,9 +39,7 @@ const FocusedTodo = ({ focusedTodo, onDeleteTodo }) => {
   return (
     <Wrapper>
       <Title>
-        {focusedTodo.title === undefined
-          ? "Select a Todo"
-          : focusedTodo.title}
+        {focusedTodo.title === undefined ? "Select a Todo" : focusedTodo.title}
       </Title>
       <Button onClick={() => onDeleteTodo(focusedTodo.id)}>DELETE</Button>
     </Wrapper>
@@ -54,8 +52,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onDeleteTodo: (id) =>
-      dispatch({ type: actionTypes.deleteTodo, payload: { id: id } })
+    onDeleteTodo: (id) => dispatch(deleteTodo(id))
   };
 };
 

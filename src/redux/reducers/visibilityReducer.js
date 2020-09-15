@@ -6,7 +6,7 @@ const initialState = {
 
 const visibilityReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.changeVisibility: {
+    case actionTypes.CHANGE_VISIBILITY: {
       return {
         ...state,
         visibility: action.payload.visibility

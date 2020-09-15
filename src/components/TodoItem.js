@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
-import * as actionTypes from "../redux/actions/actionTypes";
+import { toggleTodoComplete, deleteTodo, focusTodo } from "../redux/actions";
 
 const light = "#E7EAEC";
 const mainColor = "#595D64";
@@ -18,13 +18,12 @@ const ItemContainer = styled.div`
   margin: 3vh 0;
 `;
 
-const Label = styled.label`
+const Title = styled.p`
   font-size: 1.5vw;
   text-decoration: ${(props) => (props.completed ? "line-through" : null)};
 `;
 
 const Checkbox = styled.input.attrs({ type: "checkbox" })`
-  margin-right: 1vw;
   height: 1vw;
   width: 1vw;
 `;
@@ -53,35 +52,31 @@ const TodoItem = ({
         onFocusTodo({ id: id, title: title, completed: completed })
       }
     >
-      <Label completed={completed}>
-        <Checkbox checked={completed} onClick={(e) => onToggleTodo(e, id)} />
-        {title}
-      </Label>
+      <Checkbox
+        checked={completed}
+        onChange={() => {
+          onToggleTodo(id);
+        }}
+      />
+      <Title completed={completed}>{title}</Title>
+
       <Button onClick={(e) => onDeleteTodo(e, id)}>DELETE</Button>
     </ItemContainer>
   );
 };
 
-const mapDispatchToProps = (dispatch, getState) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onToggleTodo: (e, id) => {
-      e.stopPropagation();
-      dispatch({ type: actionTypes.toggleTodoComplete, payload: { id: id } });
+    onToggleTodo: (id) => {
+      dispatch(toggleTodoComplete(id));
     },
 
     onDeleteTodo: (e, id) => {
       e.stopPropagation();
-      dispatch({
-        type: actionTypes.deleteTodo,
-        payload: { id: id }
-      });
+      dispatch(deleteTodo(id));
     },
 
-    onFocusTodo: (focusedTodo) =>
-      dispatch({
-        type: actionTypes.focusTodo,
-        payload: { focusedTodo: focusedTodo }
-      })
+    onFocusTodo: (focusedTodo) => dispatch(focusTodo(focusedTodo))
   };
 };
 
