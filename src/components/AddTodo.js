@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
-import * as actionTypes from "../redux/actions/actionTypes";
+import { addTodo } from "../redux/actions";
 
 const dark = "#151319";
 const light = "#E7EAEC";
@@ -30,23 +30,22 @@ const Button = styled.button`
   background-color: ${lightAccent};
 `;
 
-const AddTodo = ({ onAddTodo }) => {
+const AddTodo = ({ dispatch, onAddTodo }) => {
   const [text, setText] = useState("");
 
   return (
     <>
       <Title>Add Todo</Title>
       <Input value={text} onChange={(e) => setText(e.target.value)} />
-      <Button onClick={() => onAddTodo(text)}>ADD</Button>
+      <Button onClick={() => dispatch(addTodo(text))}>ADD</Button>
     </>
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onAddTodo: (text) =>
-      dispatch({ type: actionTypes.addTodo, payload: { title: text } })
-  };
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     onAddTodo: (text) => dispatch(addTodo(text))
+//   };
+// };
 
-export default connect(null, mapDispatchToProps)(AddTodo);
+export default connect(null, null)(AddTodo);

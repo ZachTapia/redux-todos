@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
-import * as actionTypes from "../redux/actions/actionTypes";
+import { changeVisibility } from "../redux/actions";
 import TodoItem from "./TodoItem";
 
 const light = "#E7EAEC";
@@ -95,12 +95,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAddTodo: () => dispatch({ type: actionTypes.addTodo }),
-    onChangeVisibility: (visibility) =>
-      dispatch({
-        type: actionTypes.changeVisibility,
-        payload: { visibility: visibility }
-      })
+    onChangeVisibility: (visibility) => dispatch(changeVisibility(visibility))
   };
 };
 

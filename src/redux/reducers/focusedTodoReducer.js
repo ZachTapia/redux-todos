@@ -6,7 +6,7 @@ const initialState = {
 
 const focusedTodoReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.focusTodo: {
+    case actionTypes.FOCUS_TODO: {
       return {
         ...state,
         focusedTodo: action.payload.focusedTodo
@@ -14,7 +14,7 @@ const focusedTodoReducer = (state = initialState, action) => {
     }
 
     // If the currently focusedTodo is deleted, then reset focusedTodo
-    case actionTypes.deleteTodo: {
+    case actionTypes.DELETE_TODO: {
       if (action.payload.id === state.focusedTodo.id) {
         return {
           ...state,
