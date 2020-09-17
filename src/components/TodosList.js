@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 
-import { changeVisibility } from "../redux/actions";
+import { fetchTodos, changeVisibility } from "../redux/actions";
 import TodoItem from "./TodoItem";
 
 const light = "#E7EAEC";
@@ -35,6 +35,10 @@ const TodosList = () => {
 
   const todos = useSelector((state) => state.todos.todos);
   const visibility = useSelector((state) => state.visibility.visibility);
+
+  useEffect(() => {
+    dispatch(fetchTodos());
+  }, []);
 
   const renderedTodos = todos.map((todo) => {
     switch (visibility) {

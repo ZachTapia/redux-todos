@@ -43,10 +43,4 @@ const AddTodo = () => {
   );
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     onAddTodo: (text) => dispatch(addTodo(text))
-//   };
-// };
-
 export default AddTodo;
