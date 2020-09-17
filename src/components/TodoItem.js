@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { toggleTodoComplete, deleteTodo, focusTodo } from "../redux/actions";
 
@@ -38,46 +38,31 @@ const Button = styled.button`
   color: ${light};
 `;
 
-const TodoItem = ({
-  title,
-  completed,
-  id,
-  onToggleTodo,
-  onDeleteTodo,
-  onFocusTodo
-}) => {
+const TodoItem = ({ title, completed, id }) => {
+  const dispatch = useDispatch();
+
   return (
     <ItemContainer
       onClick={() =>
-        onFocusTodo({ id: id, title: title, completed: completed })
+        dispatch(focusTodo({ id: id, title: title, completed: completed }))
       }
     >
       <Checkbox
         checked={completed}
-        onChange={() => {
-          onToggleTodo(id);
-        }}
+        onChange={() => dispatch(toggleTodoComplete(id))}
       />
       <Title completed={completed}>{title}</Title>
 
-      <Button onClick={(e) => onDeleteTodo(e, id)}>DELETE</Button>
+      <Button
+        onClick={(e) => {
+          e.stopPropagation();
+          dispatch(deleteTodo(id));
+        }}
+      >
+        DELETE
+      </Button>
     </ItemContainer>
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onToggleTodo: (id) => {
-      dispatch(toggleTodoComplete(id));
-    },
-
-    onDeleteTodo: (e, id) => {
-      e.stopPropagation();
-      dispatch(deleteTodo(id));
-    },
-
-    onFocusTodo: (focusedTodo) => dispatch(focusTodo(focusedTodo))
-  };
-};
-
-export default connect(null, mapDispatchToProps)(TodoItem);
+export default TodoItem;

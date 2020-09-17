@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import { deleteTodo } from "../redux/actions";
 
@@ -35,25 +35,20 @@ const Button = styled.button`
   color: ${light};
 `;
 
-const FocusedTodo = ({ focusedTodo, onDeleteTodo }) => {
+const FocusedTodo = () => {
+  const dispatch = useDispatch();
+  const focusedTodo = useSelector((state) => state.focusedTodo.focusedTodo);
+
   return (
     <Wrapper>
       <Title>
         {focusedTodo.title === undefined ? "Select a Todo" : focusedTodo.title}
       </Title>
-      <Button onClick={() => onDeleteTodo(focusedTodo.id)}>DELETE</Button>
+      <Button onClick={() => dispatch(deleteTodo(focusedTodo.id))}>
+        DELETE
+      </Button>
     </Wrapper>
   );
 };
 
-const mapStateToProps = (state) => ({
-  focusedTodo: state.focusedTodo.focusedTodo
-});
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onDeleteTodo: (id) => dispatch(deleteTodo(id))
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(FocusedTodo);
+export default FocusedTodo;

@@ -1,6 +1,6 @@
 import React from "react";
-import { connect } from "react-redux";
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
 
 import { changeVisibility } from "../redux/actions";
 import TodoItem from "./TodoItem";
@@ -30,7 +30,12 @@ const Dropdown = styled.select`
   margin-left: auto;
 `;
 
-const TodosList = ({ todos, visibility, onChangeVisibility }) => {
+const TodosList = () => {
+  const dispatch = useDispatch();
+
+  const todos = useSelector((state) => state.todos.todos);
+  const visibility = useSelector((state) => state.visibility.visibility);
+
   const renderedTodos = todos.map((todo) => {
     switch (visibility) {
       case "completed": {
@@ -76,7 +81,7 @@ const TodosList = ({ todos, visibility, onChangeVisibility }) => {
   return (
     <Wrapper>
       <Title>Things to do:</Title>
-      <Dropdown onChange={(e) => onChangeVisibility(e.target.value)}>
+      <Dropdown onChange={(e) => dispatch(changeVisibility(e.target.value))}>
         <option value="all">All</option>
         <option value="completed">Completed</option>
         <option value="incompleted">Incompleted</option>
@@ -86,17 +91,4 @@ const TodosList = ({ todos, visibility, onChangeVisibility }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    todos: state.todos.todos,
-    visibility: state.visibility.visibility
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onChangeVisibility: (visibility) => dispatch(changeVisibility(visibility))
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(TodosList);
+export default TodosList;
