@@ -11,7 +11,7 @@ const ItemContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 25vw;
+  width: 30vw;
   height: 10vh;
   background-color: ${light};
   border-radius: 7px;
@@ -19,8 +19,9 @@ const ItemContainer = styled.div`
 `;
 
 const Title = styled.p`
-  font-size: 1.5vw;
+  font-size: 1.25vw;
   text-decoration: ${(props) => (props.completed ? "line-through" : null)};
+  max-width: 12.5vw;
 `;
 
 const Checkbox = styled.input.attrs({ type: "checkbox" })`

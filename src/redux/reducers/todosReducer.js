@@ -1,14 +1,18 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
-  todos: [
-    { id: 1, title: "Wash car", completed: true },
-    { id: 2, title: "Do HW", completed: false }
-  ]
+  todos: []
 };
 
 const todosReducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.FETCH_TODOS: {
+      return {
+        ...state,
+        todos: action.payload.todos
+      };
+    }
+
     case actionTypes.ADD_TODO: {
       return {
         ...state,
