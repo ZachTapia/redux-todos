@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { addTodo } from "../redux/actions";
 
@@ -30,7 +30,8 @@ const Button = styled.button`
   background-color: ${lightAccent};
 `;
 
-const AddTodo = ({ dispatch, onAddTodo }) => {
+const AddTodo = () => {
+  const dispatch = useDispatch();
   const [text, setText] = useState("");
 
   return (
@@ -48,4 +49,4 @@ const AddTodo = ({ dispatch, onAddTodo }) => {
 //   };
 // };
 
-export default connect(null, null)(AddTodo);
+export default AddTodo;
